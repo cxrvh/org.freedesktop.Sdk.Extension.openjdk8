@@ -60,7 +60,7 @@ modules:
       - images
     sources:
       - type: git
-        url: 'https://github.com/adoptium/jdk8u.git'
+        url: https://github.com/adoptium/jdk8u.git
         tag: jdk8u392-b08
       - type: shell
         commands:
@@ -74,6 +74,14 @@ modules:
         url: http://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
         sha512: deaa39e16b2cf20f8cd7d232a1306344f04020e1f0fb28d35492606f647a60fe729cc40d3cba33e093a17aed41bd161fe1240556d0f1b80e773abd408686217e
+        x-checker-data:
+          type: anitya
+          project-id: 1894
+          stable-only: true
+          is-main-source: false
+          url-template: http://archive.apache.org/dist/maven/maven-3/$version/binaries/apache-maven-$version-bin.tar.gz
+          versions:
+            <: 4.0.0
     build-commands:
       - mkdir -p $FLATPAK_DEST/maven
       - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
